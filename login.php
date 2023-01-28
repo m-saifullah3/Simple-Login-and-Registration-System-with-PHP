@@ -2,10 +2,6 @@
 <?php
 session_start();
 
-if (isset ($_SESSION['id'])) {
-    header('location: ./index.php');
-}
-
 $error = $success = $name = $email = '';
 
 if (isset($_POST['submit'])) {
@@ -18,12 +14,12 @@ if (isset($_POST['submit'])) {
         $error = 'Provide your password';
     } else {
         $new_password = md5($password);
-        $sql = "SELECT * FROM `users` WHERE `email` = '${email}' AND `password` = '${new_password}'";
+        $sql = "SELECT * FROM `students` WHERE `Email` = '$email' AND `Password` = '$new_password'";
         $result = $conn->query($sql);
 
         if ($result->num_rows == 1) {
-            $user = $result->fetch_assoc();
-            $_SESSION['id'] = $user['id'];
+            $student = $result->fetch_assoc();
+            $_SESSION['id'] = $student['Student_id'];
             header('location: ./index.php');
         } else {
             $error = 'Invalid combination';

@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
     } elseif (empty($password)) {
         $error = 'Provide your password';
     } else {
-        $sql = "SELECT * FROM `users` WHERE `email` = '${email}'";
+        $sql = "SELECT * FROM `students` WHERE `email` = '$email'";
         $result = $conn->query($sql);
         if ($result->num_rows == 0) {
             
@@ -30,7 +30,7 @@ if (isset($_POST['submit'])) {
             } else {
                 if ($password === $cPassword) {
                     $new_password = md5($password);
-                    $sql = "INSERT INTO `users`(`name`, `email`, `password`) VALUES ('${name}', '${email}', '${new_password}')";
+                    $sql = "INSERT INTO `students`(`Name`, `Email`, `Password`) VALUES ('$name', '$email', '$new_password')";
 
                     if ($conn->query($sql)) {
                         $success = 'User has been succesfully resgistered!';

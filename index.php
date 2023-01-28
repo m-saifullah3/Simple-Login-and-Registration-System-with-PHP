@@ -6,7 +6,7 @@ session_start();
 if (isset ($_SESSION['id'])) {
     $id = $_SESSION['id'];
 
-    $sql = "SELECT * FROM `users` WHERE `id` = $id";
+    $sql = "SELECT * FROM `students` WHERE `Student_id` = $id";
     $result = $conn->query($sql);
     
     $user = $result->fetch_assoc();
@@ -33,7 +33,7 @@ if (isset ($_SESSION['id'])) {
             <div class="col-md-8 mx-auto">
                 <div class="card">
                     <div class="card-body">
-                    <h1>Welcome <?php echo $user['name']; ?></h1>
+                    <h1>Welcome <?php echo $user['Name']; ?></h1>
                     <a href="./logout.php" class="btn btn-warning">Logout</a>
                     </div>
                 </div>
